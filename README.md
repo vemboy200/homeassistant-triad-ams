@@ -3,7 +3,7 @@
 Triad AMS for Home Assistant
 ============================
 
-A custom Home Assistant integration for controlling a Triad AMS 8x8 audio matrix switch over TCP. The integration exposes one media player entity per active output zone and lets you select a routed input, adjust volume, and optionally mirror metadata from an upstream media player entity.
+A custom Home Assistant integration for controlling various kinds of [Triad AMS](https://www.snapav.com/shop/en/snapav/brands/triad) audio matrix switches over TCP. The integration exposes one media player entity per active output zone and lets you select a routed input, adjust volume, and optionally mirror metadata from an upstream media player entity.
 
 Attribution: The device protocol and command bytes used by this integration were derived from the excellent work by Tim Weiler — https://github.com/tim-weiler/triad-audio-matrix. Thank you Tim!
 
@@ -15,6 +15,15 @@ Status
   - Triad AMS 24x24 (Audio Matrix Switch)
 - Transport: TCP (default port 52000)
 - Discovery: Not implemented (manual host/port entry)
+
+Use Cases
+---------
+Here are some potential use cases of this integration
+
+[comment]: <> (I need better use cases expecially ones that integrate into the broader home assistant ecosystem, I also need automation examples)
+- Play music during a party
+- Have it pause a robot vacuum if one of the speakers are active
+- Turn off audio when everyone leaves the home 
 
 Features
 --------
@@ -77,8 +86,13 @@ Actions/Services
 Known Limitations
 -----------
 - Only the Triad AMS 8x8 model has been confirmed with real hardware; the 16x16 and 24x24 are supported in code but untested.
-- No automatic discovery — enter host/port manually.
-- The device emits no state push; the integration reads state on demand and around actions.
+- No automatic discovery - enter host/port manually.
+- The device emits no state push; the integration reads state using polling and around actions.
+
+Data Updates
+-----------
+[comment]: <> (i dont know if it polls every 30 seconds. Does it poll around actions or does the device respond back to home assistant that it action was successful?)
+- This integration polls the device every 30 seconds and polls the device upon actions caused by Home Assistant
 
 Troubleshooting
 ---------------
@@ -93,6 +107,19 @@ Troubleshooting
 - Old output devices linger in the UI?
   - The integration prunes stale entities/devices on reload when outputs are deactivated. If you still see devices, check for disabled entities tied to them
 
+Removing This Integration
+-------------------------
+Removing this integration is the same as most HACS integrations:
+
+- Go to **Settings** → **Devices & Services** and select the Triad AMS integration card.
+- From the list of devices, select the Triad AMS entry.
+- Next to the entry, select the three-dot menu, then select **Delete**.
+- Repeat steps 2 and 3 for every entry you have
+- If installed through HACS, go to HACS, select the three-dot menu for this integration, then select **Remove**.
+- If you did a manual installation, delete the `custom_components/triad_ams` folder,
+- Then (regradless of installtion method) restart Home Assistant to clear the cache.
+
+  
 Credits
 -------
 - Protocol reference and driver data: Tim Weiler — https://github.com/tim-weiler/triad-audio-matrix
