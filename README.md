@@ -68,13 +68,13 @@ Notes
 - If you later change the active lists or links in Options, the integration reloads and updates entities automatically
 - The device model selected during initial setup determines the number of available inputs and outputs
 
-Services
+Actions/Services
 --------
 - `triad_ams.turn_on_with_source` — entity service on a Triad AMS `media_player`. Takes an `input_entity_id` of another HA `media_player`; the integration looks up which Triad input is linked to that entity and routes it to the target zone. Best when both ends of the action are HA entities (the upstream source has a media_player and you want the zone to mirror it).
 - `triad_ams.set_route` — global service. Takes two integers, `output` (1..N) and `input` (0..M); routes the input to the output directly. Use `input: 0` to disconnect the output. Best for headless or calibration automations that think in terms of physical port numbers rather than HA entities. Raises if more than one Triad AMS config entry is configured (no implicit broadcast).
 - `triad_ams.set_protocol_debug` — toggles protocol-level logging across all configured entries. Field: `enabled: true|false`.
 
-Limitations
+Known Limitations
 -----------
 - Only the Triad AMS 8x8 model has been confirmed with real hardware; the 16x16 and 24x24 are supported in code but untested.
 - No automatic discovery — enter host/port manually.
