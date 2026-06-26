@@ -7,7 +7,7 @@ rules:
   config-flow-test-coverage: done
   config-flow: done
   dependency-transparency: done
-  docs-actions: todo
+  docs-actions: done
   docs-high-level-description: done
   docs-installation-instructions: done
   docs-removal-instructions: todo
@@ -15,7 +15,9 @@ rules:
   entity-unique-id: done
   has-entity-name: done
   runtime-data: done
-  test-before-configure: not-applicable
+  test-before-configure:
+    status: exempt
+    comment: needs explaining
   test-before-setup: done
   unique-config-entry: done
 
@@ -28,14 +30,20 @@ rules:
   integration-owner: done
   log-when-unavailable: done
   parallel-updates: done
-  reauthentication-flow: not-applicable
+  reauthentication-flow:
+    status: exempt
+    comment: this integration has no form of authentication
   test-coverage: done
 
   # Gold
   devices: done
   diagnostics: done
-  discovery-update-info: not-applicable
-  discovery: not-applicable
+  discovery-update-info:
+    status: exempt
+    comment: cannot be discovered
+  discovery:
+    status: exempt
+    comment: cannot be discovered
   docs-data-update: todo
   docs-examples: todo
   docs-known-limitations: done
@@ -43,7 +51,9 @@ rules:
   docs-supported-functions: done
   docs-troubleshooting: done
   docs-use-cases: todo
-  dynamic-devices: not-applicable
+  dynamic-devices: 
+    status: exempt
+    comment: One device per config entry 
   entity-category: done
   entity-device-class: done
   entity-disabled-by-default: done
@@ -52,9 +62,15 @@ rules:
   icon-translations: done
   reconfiguration-flow: done
   repair-issues: done
-  stale-devices: done
+  stale-devices:
+    status: exempt
+    comment: One device per config entry 
 
   # Platinum
-  async-dependency: not-applicable
-  inject-websession: not-applicable
+  async-dependency:
+    status: exempt
+    comment: needs explaining
+  inject-websession: 
+    status: exempt
+    comment: doesnt use http(s) (needs verifaction)
   strict-typing: done
